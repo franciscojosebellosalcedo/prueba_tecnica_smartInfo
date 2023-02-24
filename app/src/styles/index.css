@@ -342,3 +342,51 @@ table tbody tr:nth-of-type(even) {
   overflow: auto;
 }
 
+.container_modal{
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0px;
+  background-color: rgba(0, 0, 0, 0.384);
+  opacity: 0;
+  pointer-events: none;
+  --see:0;
+  transition: .4s;
+}
+.modal{
+  width: 40%;
+  position: relative;
+  height: 45%;
+  border-radius:8px;
+  opacity: var(--see);
+  box-shadow:0px 1px 3px 0px #000000;
+  background-color: rgba(255, 255, 255, 0.992);
+}
+.see_modal{
+  opacity: 1;
+  --see:1;
+  pointer-events: unset;
+
+}
+.modal_exit{
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.modal_title{
+  margin-top: 40px;
+  text-align: center;
+  font-weight: 400;
+}
+.modal_message{
+  text-align: center;
+  margin-top: 70px;
+  font-size: 20px;
+}
