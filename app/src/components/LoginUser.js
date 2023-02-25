@@ -36,7 +36,6 @@ export const LoginUser = () => {
   const signUp = async (e) => {
     e.preventDefault();
     try {      
-      console.log(response);
       if (handlerFilds()) {
         setMessageModal("Por favor llene los campos");
         const containerModal = document.querySelector(".container_modal");
