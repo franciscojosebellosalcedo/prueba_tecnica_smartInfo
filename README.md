@@ -6,13 +6,14 @@ Proyecto de doble proposito, el usuario podrá iniciar sesión , pero si no tien
 
 # Tecnologias usadas
 
-React js,
-Node js,
-Express,
-Mysql,
-Css
+- React js,
+- Node js,
+- Express,
+- Mysql,
+- Css
 
 # Funcinalidades faltantes
 
-Autenticar usuario
-Implementacion de JWT y bcrypt
+- Autenticar usuario
+- Implementacion de JWT y bcrypt
+- 
