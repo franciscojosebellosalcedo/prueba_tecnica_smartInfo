@@ -17,6 +17,7 @@ Proyecto de doble proposito, el usuario podrá iniciar sesión , pero si no tien
 - Autenticar usuario
 - Implementacion de JWT y bcrypt
 - Buscar en los registros
+- menu desde la base de datos
 
 
 # experiencia con la app
