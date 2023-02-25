@@ -103,6 +103,7 @@ body {
   color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
   border: none;
   transition: .4s;
 }
@@ -389,4 +390,9 @@ table tbody tr:nth-of-type(even) {
   text-align: center;
   margin-top: 70px;
   font-size: 20px;
+  width: 86%;
+}
+.link_login{
+  text-decoration: underline;
+  font-size: 17px;
 }

@@ -1,9 +1,9 @@
-import { createPool } from "mysql2/promise";
+import {createPool} from "mysql2/promise";
 export const connection = createPool({
-  host: "localhost",
-  user: "root",
-  password: "developer",
-  port: "3306",
-  database: "db_register_person",
+  host: 'localhost',
+  user: 'root',
+  database: 'db_register_person',
+  password:"developer",
+  port:"3306",
 });
-console.log("connection established ");
+console.log("conexion exitosa");

@@ -2,16 +2,18 @@ import React from 'react';
 import {
   BrowserRouter,Routes,Route
 } from 'react-router-dom';
-import {PageIndex} from '../pages/PageIndex.js';
+import {PageLogin} from '../pages/PageLogin.js';
 import { PageNotFound } from '../pages/PageNotFound.js';
-import {PageRegisters} from '../pages/PageRegisters';
+import {PageRegistersPerson} from '../pages/PageRegisters';
+import { PageRegisterUser } from '../pages/PageRegisterUser.js';
 
 export const Routers = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<PageIndex/>}/>
-        <Route path='/registros' element={<PageRegisters/>}/>
+        <Route path='/' element={<PageRegisterUser/>}/>
+        <Route path='/login' element={<PageLogin/>}/>
+        <Route path='/registros' element={<PageRegistersPerson/>}/>
         <Route path='*' element={<PageNotFound/>}/>
       </Routes>
     </BrowserRouter>

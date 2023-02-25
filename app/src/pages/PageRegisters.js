@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu } from '../components/Menu'
 import { Registers } from '../components/Registers'
 
-export const PageRegisters = () => {
+export const PageRegistersPerson = () => {
   return (
     <>
       <Menu />
