@@ -20,6 +20,6 @@ Proyecto de doble proposito, el usuario podrá iniciar sesión , pero si no tien
 - menu desde la base de datos
 
 
-# experiencia con la app
+# experiencia con la app j
 
 Muy buena , sin embargo aun asi lo seguire mejorando y si gustas te lo volveria a enviar
