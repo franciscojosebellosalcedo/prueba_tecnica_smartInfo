@@ -6,10 +6,10 @@ Proyecto de doble proposito, el usuario podrá iniciar sesión , pero si no tien
 
 # Tecnologias usadas
 
-React js
-Node js
-Express
-Mysql
+React js,
+Node js,
+Express,
+Mysql,
 Css
 
 # Funcinalidades faltantes
