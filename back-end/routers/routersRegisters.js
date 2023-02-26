@@ -33,23 +33,21 @@ router.get("/departaments", async (req, res) => {
 
 });
 
-router.get("/serch/:text", async (req, res) => {
+router.get("/serchPerson/:text", async (req, res) => {
     try {
         const [personSerch] = await connection.query("select * from person where document= ?", [req.params.text]);
-        const [departamentSerch] = await connection.query("select * from departament where name_despatament= ?", [req.params.text]);
-        console.log(departamentSerch)
+        const id_departament=personSerch[0].departamento_id_departamento;
+        console.log(id_departament);
+        
         if (personSerch.length > 0) {
-            const [departament] = await connection.query("select * from departament where id_departamento= ?", [person[0].departamento_id_departamento]);
-            res.json({ person: personSerch, departament: departament })
-        } else if (departamentSerch.length > 0) {
-            const [person] = await connection.query("select * from person where document= ?", [departamentSerch[0].id_departamento]);
-            res.json({ person: person, departament: departamentSerch })
-
-        } else {
-            res.json({ message: "No se encontro nada" })
+            const [departament] = await connection.query("select * from departament where id_departamento= ?", [id_departament]);
+            res.json({ person: personSerch, departament: departament });
+        }else{
+            res.status(200).json({message:"No se obtuvo informacion"});
         }
+        console.log( typeof id_departament);
     } catch (error) {
-        res.json({ message: "Error en el servidor" });
+        res.json({ message: "error en el servidor" });
         console.log(error);
     }
 

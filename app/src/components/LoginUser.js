@@ -35,7 +35,7 @@ export const LoginUser = () => {
   }
   const signUp = async (e) => {
     e.preventDefault();
-    try {      
+    try {
       if (handlerFilds()) {
         setMessageModal("Por favor llene los campos");
         const containerModal = document.querySelector(".container_modal");
@@ -45,18 +45,12 @@ export const LoginUser = () => {
         const containerModal = document.querySelector(".container_modal");
         containerModal.classList.add("see_modal");
       } else {
-        const result = await login(user);
         setUser({
           email: "",
           password: ""
         })
-        if (result.data.bool) {
-          navegate("/registros");
-        } else {
-          setMessageModal(result.data.message);
-          const containerModal = document.querySelector(".container_modal");
-          containerModal.classList.add("see_modal");
-        }
+        navegate("/registros");
+
       }
 
     } catch (error) {
