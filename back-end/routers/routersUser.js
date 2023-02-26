@@ -25,6 +25,7 @@ const bcryptPassword = async (req, res, hash) => {
 
 routerUser.post('/newUser', async (req, res) => {
   try {
+    console.log(req.body)
     const [validationUser] = await connection.query("select * from user where email= ? ||  password= ?", [req.body.email, req.body.password]);
     if (validationUser.length > 0) {
       res.json({ message: "El usuario ya existe", "bool": false });
@@ -49,43 +50,43 @@ routerUser.post('/newUser', async (req, res) => {
   }
 });
 
-const compareBcrypt = async (req, res) => {
+// const compareBcrypt = async (req, res) => {
+//   try {
+//     const [response] = await connection.query("select * from user where email= ?",
+//       [req.params.email]);
+//     if (response.length > 0) {
+//       return response[0].password;
+//       // res.status(200).json({ "message": "Usuario agregado con exito", "bool": true });
+//     } else {
+//       return null;
+
+//       // res.status(200).json({ "message": "Usuario no agregado", "bool": false });
+//     }
+//   } catch (error) {
+
+//   }
+
+
+// }
+routerUser.get("/log/:email/:password", async (req, res) => {
   try {
     const [response] = await connection.query("select * from user where email= ?",
-      [req.body.email]);
-    if (response.length > 0) {
-      return response[0].password;
-      // res.status(200).json({ "message": "Usuario agregado con exito", "bool": true });
-    } else {
-      return null;
+      [req.params.email]);
+    console.log(response[0]);
+    console.log(req.params)
+    bcrypt.compare(req.params.password, response[0].password, (error, result) => {
+      if (error) {
+        res.json({ message: "Ocurrio un error", bool: false });
+      }
+      if (result) {
+        res.json({ bool: true });
+      } else {
+        res.status(400).json({message: "Vifique su contraseña o su correo", bool: false });
 
-      // res.status(200).json({ "message": "Usuario no agregado", "bool": false });
-    }
-  } catch (error) {
+      }
+      console.log(result);
+    });
 
-  }
-
-}
-routerUser.get("/loginUser", async (req, res) => {
-  try {
-    // const data = await compareBcrypt(req, res);
-    // console.log(req.body);
-    // res.json()
-    console.log(req.body)
-
-    // bcrypt.compare(req.body.password, data, (error, result) => {
-    //   if (error) {
-    //     res.json({ message: "No se pudo completar la operacion" });
-    //     return;
-    //   }
-    //   if(result){
-    //     res.json({bool:true});
-    //   }else{
-    //     res.status(400).json({bool:false});
-
-    //   }
-    //   console.log( result);
-    // });
   } catch (error) {
     res.json({ message: "Error en el servidor" });
 

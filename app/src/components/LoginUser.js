@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 // mcomponente del modal para los mensajes
 import { Modal } from './Modal';
-import {loginUser} from "../utils/api.user.js";
+import { loginUser } from "../utils/api.user.js";
 //componentes de react-router-dom nos, link: nos direccionara a una pagina de la app, useNavigate: hara lo mismo pero de otra forma
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -11,9 +11,9 @@ export const LoginUser = () => {
   // este estado nos permite alamcenar lo que el usuario ingrese
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
   });
-// estado del mensaje del componente Modal segun la accion
+  // estado del mensaje del componente Modal segun la accion
   const [messageModal, setMessageModal] = useState("");
   const navegate = useNavigate();
   // fn madejadora de lo que el usuario escriba y lo alamacenará en el estado user
@@ -22,7 +22,7 @@ export const LoginUser = () => {
       { ...user, [e.target.name]: e.target.value }
     );
   }
-// verifica si el usuario ha escrito algo o no
+  // verifica si el usuario ha escrito algo o no
   const handlerFilds = () => {
     if (user.email.length === 0 || user.password.length === 0) {
       return true;
@@ -42,24 +42,30 @@ export const LoginUser = () => {
   // permitira entra a la proxima vista 
   const signUp = async (e) => {
     e.preventDefault();
-    // try {
-    //   // if (handlerFilds()) {
-    //   //   setMessageModal("Por favor llene los campos");
-    //   //   //Hará posible la visualizacion del modal
-    //   //   const containerModal = document.querySelector(".container_modal");
-    //   //   containerModal.classList.add("see_modal");
-    //   // } else if (user.password.length < 8) {
-    //   //   setMessageModal("La contraseña debe de tener mas de 8 caracteres");
-    //   //   const containerModal = document.querySelector(".container_modal");
-    //   //   containerModal.classList.add("see_modal");
-    //   // } else {
-        
-    //   // }
-    // } catch (error) {
-      //   console.log(error);
-      // }
-        const response=await loginUser(user);
-        console.log(response);
+    try {
+      if (handlerFilds()) {
+        setMessageModal("Por favor llene los campos");
+        //Hará posible la visualizacion del modal
+        const containerModal = document.querySelector(".container_modal");
+        containerModal.classList.add("see_modal");
+      } else if (user.password.length < 8) {
+        setMessageModal("La contraseña debe de tener mas de 8 caracteres");
+        const containerModal = document.querySelector(".container_modal");
+        containerModal.classList.add("see_modal");
+      } else {
+        const response = await loginUser(user.email, user.password);
+        if (response.data.bool) {
+          navegate("/registros");
+        } else {
+          setMessageModal(response.data.message);
+          const containerModal = document.querySelector(".container_modal");
+          containerModal.classList.add("see_modal");
+        }
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div className='login'>

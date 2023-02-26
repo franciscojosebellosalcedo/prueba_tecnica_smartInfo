@@ -15,8 +15,8 @@ app.use(cors());
 
 // hace uso de lo que le indiquemos, ya sean rutas u otros paquetes
 app.use(express.json());
-app.use(routeIndex);
 app.use(routerUser);
+app.use(routeIndex);
 app.use(router);
 
 
