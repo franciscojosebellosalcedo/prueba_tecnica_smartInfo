@@ -55,7 +55,9 @@ export const LoginUser = () => {
       } else {
         const response = await loginUser(user.email, user.password);
         if (response.data.bool) {
-          navegate("/registros");
+          navegate("/registros",{
+            replace:true
+          });
         } else {
           setMessageModal(response.data.message);
           const containerModal = document.querySelector(".container_modal");

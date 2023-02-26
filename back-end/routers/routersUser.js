@@ -81,7 +81,7 @@ routerUser.get("/log/:email/:password", async (req, res) => {
       if (result) {
         res.json({ bool: true });
       } else {
-        res.status(400).json({message: "Vifique su contraseña o su correo", bool: false });
+        res.status(200).json({message: "Vifique su contraseña o su correo", bool: false });
 
       }
       console.log(result);
@@ -89,7 +89,7 @@ routerUser.get("/log/:email/:password", async (req, res) => {
 
   } catch (error) {
     res.json({ message: "Error en el servidor" });
-
+    console.log(error);
   }
 });
 
