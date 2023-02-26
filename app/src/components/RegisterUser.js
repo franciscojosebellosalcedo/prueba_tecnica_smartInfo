@@ -42,16 +42,16 @@ export const RegisterUser = () => {
             containerModal.classList.add("see_modal");
         } else {
             const response = await regiterUser(newUser);
-            setNewUser({
-                name: "",
-                last_name: "",
-                email: "",
-                password: ""
-            })
             if (response.data.bool) {
                 setMessageModal(response.data.message);
                 const containerModal = document.querySelector(".container_modal");
                 containerModal.classList.add("see_modal");
+                setNewUser({
+                    name: "",
+                    last_name: "",
+                    email: "",
+                    password: ""
+                })
             }else{
                 setMessageModal(response.data.message);
                 const containerModal = document.querySelector(".container_modal");
