@@ -21,7 +21,6 @@ si ya tienes instaladas las tecnologias anteriores solo deberas ejecutar el serv
 
 # Funcinalidades faltantes
 
-- Autenticar usuario
 - Implementacion de JWT
 - menu desde la base de datos
 
