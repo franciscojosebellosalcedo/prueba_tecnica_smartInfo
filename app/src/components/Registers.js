@@ -1,16 +1,22 @@
+//importamos las funciones requeridas para este
 import React, { useState, useEffect } from 'react';
+//modal para los mensajes de las acciones
 import { Modal } from './Modal';
+// funcion de devolucion de las personas
 import { peopleList } from "../utils/api.resgisters.js";
+// funcion de devolucion de los departamentos
 import { departamentsList } from "../utils/api.resgisters.js";
 import { useNavigate } from 'react-router-dom';
 
 
 export const Registers = () => {
+  //estados del componete de Registers
   const [people, setPeople] = useState([]);
   const [departaments, setDepartaments] = useState([]);
   const [messageModal, setMessageModal] = useState("");
   const navigate = useNavigate();
 
+//fn que se encaraga de realizar peticion al servidor y trarer a las personas
   const getPeople = async () => {
     try {
       const response = await peopleList();
@@ -21,6 +27,7 @@ export const Registers = () => {
       containerModal.classList.add("see_modal");
     }
   }
+//fn que se encaraga de realizar peticion al servidor y trarer a los departamentos 
 
   const getDepartaments = async () => {
     try {
@@ -34,7 +41,7 @@ export const Registers = () => {
       containerModal.classList.add("see_modal");
     }
   }
-
+// esto se ejecutara una ves se monte el componente
   useEffect(() => {
     getPeople();
     getDepartaments();

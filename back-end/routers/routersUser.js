@@ -1,4 +1,6 @@
+//impostamos el enrutador de express para crear s rutas del servidor y este genere sus respuentas
 import { Router } from 'express';
+// importamos la db  para lkas consultas sql
 import { connection } from '../db.js';
 
 const routerUser = Router();
@@ -21,7 +23,7 @@ routerUser.post('/newUser', async (req, res) => {
     res.json({ "message": "Hubo un error en el servidor", "error": error });
   }
 });
-
+// ruta que permirita el acceso de login
 routerUser.get('/login', async (req, res) => {
   try {
     

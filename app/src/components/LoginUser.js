@@ -1,23 +1,27 @@
+//importacion de los componentes necesarios para el login
 import React, { useState } from 'react';
+// mcomponente del modal para los mensajes
 import { Modal } from './Modal';
-import axion from "axios";
+//componentes de react-router-dom nos, link: nos direccionara a una pagina de la app, useNavigate: hara lo mismo pero de otra forma
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from "../utils/api.user";
 
+//componente login
 export const LoginUser = () => {
+  // este estado nos permite alamcenar lo que el usuario ingrese
   const [user, setUser] = useState({
     email: "",
     password: ""
   });
-
+// estado del mensaje del componente Modal segun la accion
   const [messageModal, setMessageModal] = useState("");
   const navegate = useNavigate();
+  // fn madejadora de lo que el usuario escriba y lo alamacenará en el estado user
   const handlerUser = (e) => {
     setUser(
       { ...user, [e.target.name]: e.target.value }
     );
   }
-
+// verifica si el usuario ha escrito algo o no
   const handlerFilds = () => {
     if (user.email.length === 0 || user.password.length === 0) {
       return true;
@@ -25,6 +29,7 @@ export const LoginUser = () => {
       return false;
     }
   }
+  //limpiará los campos del login pero tambien establecera un nuevo estado paruser
   const clearFilds = () => {
     setUser(
       {
@@ -33,11 +38,13 @@ export const LoginUser = () => {
       }
     )
   }
+  // permitira entra a la proxima vista 
   const signUp = async (e) => {
     e.preventDefault();
     try {
       if (handlerFilds()) {
         setMessageModal("Por favor llene los campos");
+        //Hará posible la visualizacion del modal
         const containerModal = document.querySelector(".container_modal");
         containerModal.classList.add("see_modal");
       } else if (user.password.length < 8) {

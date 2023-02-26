@@ -1,23 +1,27 @@
+//importamos a los componentes y funciones necesarias para este
 import React, { useState } from 'react';
 import { Modal } from './Modal';
 import { Link, useNavigate } from 'react-router-dom';
 import { regiterUser } from "../utils/api.user.js";
 
+// Componete RegisterUser
 export const RegisterUser = () => {
+    //estado de alamecenamiento de que se escriba en los inputs
     const [newUser, setNewUser] = useState({
         name: "",
         last_name: "",
         email: "",
         password: ""
     });
-
+// estado de los mensjaes del Modal
     const [messageModal, setMessageModal] = useState("");
     const handlerUser = (e) => {
+        //actualizacion de datos del estado segun los inputs
         setNewUser(
             { ...newUser, [e.target.name]: e.target.value }
         );
     }
-
+// verifica si el usuario escribio algo o no
     const handlerFilsd = () => {
         if (newUser.name.length === 0 || newUser.last_name.length === 0 || newUser.email.length === 0 || newUser.password.length === 0) {
             return true;
@@ -25,7 +29,7 @@ export const RegisterUser = () => {
             return false;
         }
     }
-
+// guardara un nuevo usuario
     const saveNewUser = async (e) => {
         e.preventDefault();
         if (handlerFilsd()) {
