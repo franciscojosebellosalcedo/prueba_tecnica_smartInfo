@@ -1,46 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from './Modal';
 import { peopleList } from "../utils/api.resgisters.js";
 import { departamentsList } from "../utils/api.resgisters.js";
 import { useNavigate } from 'react-router-dom';
-import { getPerson } from "../utils/api.resgisters.js";
 
 
 export const Registers = () => {
   const [people, setPeople] = useState([]);
   const [departaments, setDepartaments] = useState([]);
   const [messageModal, setMessageModal] = useState("");
-  const navigate=useNavigate();
-  const [serchData,setSerchData]=useState("");
+  const navigate = useNavigate();
+  const [serchData, setSerchData] = useState("");
 
-  const [person,setPerson]=useState([]);
-  const [departament,setDepartament]=useState([]);
-
-  const validationSerch=()=>{
-    if(serchData.length===0){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  const serchPerson= async(e)=>{
-    e.preventDefault();
-    if(validationSerch()){
-      setMessageModal("Ingrese un documento por favor");
-      const containerModal = document.querySelector(".container_modal");
-      containerModal.classList.add("see_modal");
-    }else{
-      const response=await getPerson(serchData);
-      console.log(response);
-      setPerson(response.data.person);
-      setDepartament(response.data.departament);
-      console.log(person);
-      console.log(departament);
-    }
-  }
 
   const getPeople = async () => {
     try {
@@ -66,14 +37,6 @@ export const Registers = () => {
     }
   }
 
-  // const handlerValueSerch=(e)=>{
-  //   setSerchData(e.target.value);
-  //   if(serchData.length===0){
-  //     setDepartament([]);
-  //     setPerson([]);
-  //   }
-  // }
-
   useEffect(() => {
     getPeople();
     getDepartaments();
@@ -84,15 +47,8 @@ export const Registers = () => {
       <div className='container'>
         <h1 className='container_title'>Registros</h1>
         <div className='container_action'>
-          <div className='container_filter'>
-            <p className="metod_serch">Buscar por documento</p>
-            <form className='form_serch'>
-              <input value={serchData} onChange={(e)=>setSerchData(e.target.value)} type="text" className='input_serch' placeholder='buscar...' />
-              <button onClick={(e)=>serchPerson(e)} className='btn btn_serch'><FontAwesomeIcon className='icon_serch' icon={faMagnifyingGlass} /></button>
-            </form>
-          </div>
 
-          <button onClick={()=>navigate("/")} className='btn btn_cerrar'>Salir</button>
+          <button onClick={() => navigate("/")} className='btn btn_cerrar'>Salir</button>
 
         </div>
         <section className='container_info'>
@@ -109,7 +65,7 @@ export const Registers = () => {
               </thead>
               <tbody>
                 {
-                 person.length!=1 && serchData==="" ? people.map(person => (
+                 people.map(person => (
                     <tr key={person.document}>
                       <td>{person.name}</td>
                       <td>{person.last_name}</td>
@@ -117,22 +73,13 @@ export const Registers = () => {
                       <td>{person.document}</td>
                     </tr>
                   ))
-                  :
-                  person.map(person => (
-                    <tr key={person.document}>
-                      <td>{person.name}</td>
-                      <td>{person.last_name}</td>
-                      <td>{person.ocupation}</td>
-                      <td>{person.document}</td>
-                    </tr>
-                  ))   
                 }
               </tbody>
             </table>
 
           </div>
           <div className='container_departament info'>
-            <h1 className='info_title'>Dpt. Asignados</h1>
+            <h1 className='info_title title_dep'>Dpt. Asignados</h1>
             <table>
               <thead>
                 <tr>
@@ -142,24 +89,15 @@ export const Registers = () => {
               </thead>
               <tbody>
                 {
-                  departament.length!=1 && serchData===""?
                   departaments.map(departament => (
                     <tr key={departament.id_departamento}>
                       <td>{departament.id_departamento}</td>
                       <td>{departament.name_despatament}</td>
-                      
+
                     </tr>
 
                   ))
-                  :
-                  departament.map(dep => (
-                    <tr key={dep.id_departamento}>
-                      <td>{dep.id_departamento}</td>
-                      <td>{dep.name_despatament}</td>
-                      
-                    </tr>
 
-                  ))
                 }
 
               </tbody>

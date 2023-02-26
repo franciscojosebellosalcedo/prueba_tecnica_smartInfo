@@ -33,25 +33,6 @@ router.get("/departaments", async (req, res) => {
 
 });
 
-router.get("/serchPerson/:text", async (req, res) => {
-    try {
-        const [personSerch] = await connection.query("select * from person where document= ?", [req.params.text]);
-        const id_departament=personSerch[0].departamento_id_departamento;
-        console.log(id_departament);
-        
-        if (personSerch.length > 0) {
-            const [departament] = await connection.query("select * from departament where id_departamento= ?", [id_departament]);
-            res.json({ person: personSerch, departament: departament });
-        }else{
-            res.status(200).json({message:"No se obtuvo informacion"});
-        }
-        console.log( typeof id_departament);
-    } catch (error) {
-        res.json({ message: "error en el servidor" });
-        console.log(error);
-    }
-
-});
 
 
 

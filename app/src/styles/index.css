@@ -200,7 +200,6 @@ body {
 .container {
   width: 90%;
   margin: 0px auto;
-  height: 110vh;
   margin-top: 18px;
   /* background-color: rgba(218, 207, 207, 0.531); */
   border-radius: 8px;
@@ -243,7 +242,7 @@ body {
   display: flex;
   align-items: flex-end;
   margin-bottom: 50px;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .metod_serch {
@@ -270,8 +269,9 @@ body {
 }
 
 .container_info>.info {
-  width: 55%;
+  width: 50%;
   height: 100%;
+  border: var(--b);
   box-shadow: 0px 1px 3px 0px #000000;
   padding: 0px 5px ;
   padding-bottom: 5px;
@@ -281,7 +281,7 @@ body {
 }
 
 .container_info>.info:nth-child(2) {
-  width: 38%;
+  width: 45%;
   height: 100%;
   box-shadow: 0px 1px 3px 0px #000000;
   padding: 10px;
@@ -303,11 +303,15 @@ body {
   letter-spacing: 1.1px;
   text-transform: uppercase;
   font-size: 20px;
+  margin-top: 10px;
+  height: max-content;
   text-align: center;
   font-weight: 400;
 
 }
-
+.title_dep{
+  margin-top: -3px;
+}
 table {
   width: 100%;
   border-collapse: collapse;
