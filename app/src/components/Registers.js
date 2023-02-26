@@ -10,8 +10,6 @@ export const Registers = () => {
   const [departaments, setDepartaments] = useState([]);
   const [messageModal, setMessageModal] = useState("");
   const navigate = useNavigate();
-  const [serchData, setSerchData] = useState("");
-
 
   const getPeople = async () => {
     try {

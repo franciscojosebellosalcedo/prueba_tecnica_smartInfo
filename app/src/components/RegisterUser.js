@@ -12,7 +12,6 @@ export const RegisterUser = () => {
     });
 
     const [messageModal, setMessageModal] = useState("");
-
     const handlerUser = (e) => {
         setNewUser(
             { ...newUser, [e.target.name]: e.target.value }
