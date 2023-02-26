@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 // mcomponente del modal para los mensajes
 import { Modal } from './Modal';
+import {loginUser} from "../utils/api.user.js";
 //componentes de react-router-dom nos, link: nos direccionara a una pagina de la app, useNavigate: hara lo mismo pero de otra forma
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -41,28 +42,24 @@ export const LoginUser = () => {
   // permitira entra a la proxima vista 
   const signUp = async (e) => {
     e.preventDefault();
-    try {
-      if (handlerFilds()) {
-        setMessageModal("Por favor llene los campos");
-        //Hará posible la visualizacion del modal
-        const containerModal = document.querySelector(".container_modal");
-        containerModal.classList.add("see_modal");
-      } else if (user.password.length < 8) {
-        setMessageModal("La contraseña debe de tener mas de 8 caracteres");
-        const containerModal = document.querySelector(".container_modal");
-        containerModal.classList.add("see_modal");
-      } else {
-        setUser({
-          email: "",
-          password: ""
-        })
-        navegate("/registros");
-
-      }
-
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   // if (handlerFilds()) {
+    //   //   setMessageModal("Por favor llene los campos");
+    //   //   //Hará posible la visualizacion del modal
+    //   //   const containerModal = document.querySelector(".container_modal");
+    //   //   containerModal.classList.add("see_modal");
+    //   // } else if (user.password.length < 8) {
+    //   //   setMessageModal("La contraseña debe de tener mas de 8 caracteres");
+    //   //   const containerModal = document.querySelector(".container_modal");
+    //   //   containerModal.classList.add("see_modal");
+    //   // } else {
+        
+    //   // }
+    // } catch (error) {
+      //   console.log(error);
+      // }
+        const response=await loginUser(user);
+        console.log(response);
   }
   return (
     <div className='login'>
