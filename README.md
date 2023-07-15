@@ -18,10 +18,7 @@ si ya tienes instaladas las tecnologias anteriores solo deberas ejecutar el serv
 - Express,
 - Mysql,
 - Css
-
-# Funcinalidades faltantes
-
-- Implementacion de JWT
-- menu desde la base de datos
+- Jwt
+- bcrypt
 
 
